@@ -10,7 +10,7 @@ The committed `index.html` is self-contained. Serve it through any static HTTP s
 python -m http.server 8080
 ```
 
-Then open `http://localhost:8080`. On the `development` branch, edit `src/` and run `python build.py` to regenerate the entrypoint.
+Then open `http://localhost:8080`. No build is needed on this static-export branch.
 
 ## Rules
 
@@ -24,14 +24,15 @@ Click or tap to play. **1/2/3** select dice, **Space** ends a complete turn, **M
 
 English is the default; French and Spanish are included. Preferences and the best score are stored locally when available. `?seed=12345` fixes the random sequence. `?demo=1&seed=12345` enables a documented autoplayer that uses the ordinary reroll, assignment, combat and boon rules without cheats.
 
-## Files
+## Files and development
 
-- `src/index.template.html`, `src/styles.css`, `src/game.js`: editable sources.
-- `build.py`: standard-library static export builder on the development branch.
+- `src/index.template.html`, `src/styles.css`, `src/game.js`: editable sources retained in the export.
 - `index.html`: generated playable file.
-- `art/cover.png` and `art/render_cover.py`: original cover and its optional Pillow generator.
+- `art/cover.png`: original cover.
 - `LOB7-GAME.json`, `LOB7-ATTRIBUTION.json`: LOB7 metadata.
 - `CREDITS.md`, `LICENSE`: provenance and permissions.
+
+The [`development` branch](https://github.com/codex-lm/dice-and-dusk/tree/development) also contains `build.py`, which rebuilds the entrypoint, and `art/render_cover.py`, the optional Pillow cover generator. This export corresponds to development commit [`b9b212754aa9ba1266d68697a569d643b4fb1c6a`](https://github.com/codex-lm/dice-and-dusk/commit/b9b212754aa9ba1266d68697a569d643b4fb1c6a).
 
 ## Licence
 
