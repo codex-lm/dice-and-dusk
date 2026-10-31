@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#2b1830">
+  <meta name="description" content="Roll three dice, read your enemy and carve a path through a candlelit dungeon.">
+  <title>Dice & Dusk</title>
+  <style>/*__STYLES__*/</style>
+</head>
+<body>
+  <div id="app">
+    <div class="candle-glow" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="wordmark" id="homeButton" aria-label="Dice and Dusk home"><span class="brand-die">⚄</span> DICE <i>&</i> DUSK</a>
+      <div class="top-actions">
+        <span id="runLabel" class="run-label hidden">I / V</span>
+        <button id="helpButton" class="round-button" aria-label="How to play">?</button>
+        <button id="soundButton" class="round-button" aria-label="Sound on">♪</button>
+        <select id="languageSelect" aria-label="Language">
+          <option value="en">EN</option><option value="fr">FR</option><option value="es">ES</option>
+        </select>
+      </div>
+    </header>
+
+    <main>
+      <section id="menuScreen" class="menu-screen">
+        <div class="menu-illustration" aria-hidden="true">
+          <svg viewBox="0 0 320 170"><path class="arch" d="M55 153V80a105 105 0 0 1 210 0v73"/><path class="tower" d="M125 153V73l35-47 35 47v80M108 153V96h104v57M145 96V72h30v24M148 153v-30a12 12 0 0 1 24 0v30"/><path class="moon" d="M229 32a23 23 0 1 1-22-30 19 19 0 0 0 22 30Z"/><path class="dice-line" d="M65 116l30-8 9 29-30 8ZM223 111l29 7-7 29-29-7Z"/><path class="dice-line" d="M77 119h12M80 128h12M231 121h11M227 130h11"/><path class="ground" d="M29 153h262"/></svg>
+        </div>
+        <p class="eyebrow" data-i18n="kicker">A CANDLELIT GAME OF NERVE</p>
+        <h1>DICE <span>&</span> DUSK</h1>
+        <p class="subtitle" data-i18n="tagline">Three dice. Three choices. One last bell.</p>
+        <p class="menu-copy" data-i18n="menuCopy">Read your enemy. Spend your dice on steel, safety or sorcery. Every pip is a small promise.</p>
+        <button id="startButton" class="primary-button"><span data-i18n="begin">ENTER THE DUNGEON</span><b>→</b></button>
+        <div class="menu-rules">
+          <article><span class="rule-icon strike-color">⚔</span><div><strong data-i18n="strike">STRIKE</strong><p data-i18n="strikeRule">Deal the die + 2. Armor softens the blow.</p></div></article>
+          <article><span class="rule-icon guard-color">⬡</span><div><strong data-i18n="guard">GUARD</strong><p data-i18n="guardRule">Block this turn’s attack with the die.</p></div></article>
+          <article><span class="rule-icon hex-color">✦</span><div><strong data-i18n="hex">HEX</strong><p data-i18n="hexRule">Stack poison. It ignores armor.</p></div></article>
+        </div>
+        <p class="tiny-note" data-i18n="menuNote">Five encounters · visible intents · a boon after every victory</p>
+      </section>
+
+      <section id="gameScreen" class="game-screen hidden" aria-label="Dice and Dusk battle">
+        <div class="status-ribbon">
+          <div class="player-summary">
+            <span class="portrait">♙</span>
+            <div><span class="eyebrow" data-i18n="wanderer">THE WANDERER</span><div class="hp-line"><span id="playerHpText">42 / 42</span><div class="mini-bar"><i id="playerHpFill"></i></div></div></div>
+          </div>
+          <div class="run-stats">
+            <span id="poisonPlayer" class="status-chip hidden"></span>
+            <span id="rerollStock" class="status-chip"></span>
+          </div>
+        </div>
+
+        <div class="arena">
+          <section id="enemyCard" class="enemy-card">
+            <div class="enemy-heading"><div><span id="enemyKind" class="eyebrow">I · THE FIRST STEP</span><h2 id="enemyName">Candle Bat</h2></div><span id="enemyArmor" class="armor-badge hidden"></span></div>
+            <div id="enemyArt" class="enemy-art" aria-hidden="true"></div>
+            <div class="enemy-hp"><span id="enemyHpText">18 / 18</span><div class="hp-bar"><i id="enemyHpFill"></i></div><span id="enemyPoison" class="poison-count hidden"></span></div>
+            <div id="intent" class="intent"><span class="intent-icon">⚔</span><div><small data-i18n="intent">INTENT</small><strong id="intentText">Attack · 5</strong></div></div>
+          </section>
+
+          <section class="play-panel">
+            <div class="round-heading"><div><span class="eyebrow" data-i18n="yourRoll">YOUR ROLL</span><p id="instruction">Choose a die, then an action.</p></div><span id="comboBadge" class="combo-badge hidden"></span></div>
+            <div id="diceTray" class="dice-tray" aria-label="Dice"></div>
+            <div class="actions" aria-label="Actions">
+              <button class="action-card strike-action" data-action="0"><span class="action-icon">⚔</span><span class="action-copy"><strong data-i18n="strike">STRIKE</strong><small id="strikePreview">Die + 2 damage</small></span><span id="slot0" class="die-slot">+</span></button>
+              <button class="action-card guard-action" data-action="1"><span class="action-icon">⬡</span><span class="action-copy"><strong data-i18n="guard">GUARD</strong><small id="guardPreview">Block the die</small></span><span id="slot1" class="die-slot">+</span></button>
+              <button class="action-card hex-action" data-action="2"><span class="action-icon">✦</span><span class="action-copy"><strong data-i18n="hex">HEX</strong><small id="hexPreview">Stack the die as poison</small></span><span id="slot2" class="die-slot">+</span></button>
+            </div>
+            <div class="turn-controls"><button id="rerollButton" class="text-button">↻ <span data-i18n="reroll">REROLL</span> <b id="rerollCount">2</b></button><button id="endTurnButton" class="primary-button end-turn" disabled><span data-i18n="endTurn">END TURN</span><b>→</b></button></div>
+            <div id="combatLog" class="combat-log" aria-live="polite"></div>
+          </section>
+        </div>
+        <footer class="game-footer"><span id="boonsSummary" data-i18n="noBoons">No boons yet</span><span id="seedLabel"></span></footer>
+      </section>
+    </main>
+
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-live="polite"><div id="modalCard" class="modal-card"></div></div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script>/*__GAME__*/</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "title": "Dice & Dusk",
+  "description": "Roll three dice, read visible enemy intents, and balance steel, guard and poison through five candlelit encounters and a two-phase boss.",
+  "entrypoint": "index.html",
+  "license": "MIT",
+  "genre": ["roguelite", "dice", "turn-based strategy"],
+  "themes": ["gothic", "dungeon", "fantasy"],
+  "controls": [
+    "Click or tap a die, then an action",
+    "Click a filled action to free its die",
+    "1/2/3: select dice",
+    "Space: end turn",
+    "M: toggle sound"
+  ],
+  "credits": [
+    "Designed and developed with Kimi for Kimi Games.",
+    "Original SVG monsters, interface, animation and synthesized audio created for this game.",
+    "No third-party runtime libraries or external assets."
+  ],
+  "cover": "art/cover.png"
+}

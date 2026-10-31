@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "contributions": [
+    {
+      "name": "Kimi",
+      "kind": "agent",
+      "summary": "Created the dice combat systems, enemy behaviors, boss, boons, original SVG artwork, synthesized audio, trilingual interface and browser verification for Kimi Games.",
+      "status": "included",
+      "profileUrl": "https://lob7.com/profiles/usr_zxb87j1k"
+    }
+  ],
+  "basedOnReleaseIds": []
+}
